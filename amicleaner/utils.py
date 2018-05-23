@@ -119,6 +119,12 @@ def parse_args(args):
                         help="Number of days AMI to keep excluding those "
                              "currently being running")
 
+    parser.add_argument("-p", "--profile",
+                        dest='profile',
+                        type=str,
+                        default=None,
+                        help="Specify AWS configuration profile to use")
+
     parsed_args = parser.parse_args(args)
     if parsed_args.mapping_key and not parsed_args.mapping_values:
         print("missing mapping-values\n")

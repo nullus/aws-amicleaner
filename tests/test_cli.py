@@ -5,6 +5,7 @@ import json
 import boto3
 from moto import mock_ec2, mock_autoscaling
 from datetime import datetime
+from pytest import raises
 
 from amicleaner.cli import App
 from amicleaner.fetch import Fetcher
@@ -184,6 +185,18 @@ def test_parse_args():
     parser = parse_args(['--ami-min-days', '10', '--full-report'])
     assert parser.ami_min_days == 10
     assert parser.full_report is True
+
+
+def test_parse_args_accept_profile():
+    parser = parse_args(['--profile', 'test1'])
+    assert parser.profile == 'test1'
+
+    parser = parse_args(['-p', 'test1'])
+    assert parser.profile == 'test1'
+
+    # argparse will exit for invalid usage
+    with raises(SystemExit):
+        parse_args(['--profile'])
 
 
 def test_print_report():
