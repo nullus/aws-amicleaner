@@ -1,6 +1,4 @@
-awscli
-argparse
-boto
 boto3
 prettytable
-blessings==1.6
+blessings>=1.6,<1.7
+future

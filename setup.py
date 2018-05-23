@@ -11,10 +11,9 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-install_requirements = ['awscli', 'argparse', 'boto',
-                        'boto3', 'prettytable', 'blessings']
+install_requirements = ['boto3', 'prettytable', 'blessings', 'future']
 
-test_requirements = ['moto', 'pytest', 'pytest-pep8', 'pytest-cov']
+test_requirements = ['moto', 'pytest-pep8', 'pytest-cov']
 
 
 setup(
@@ -39,7 +38,6 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
@@ -51,6 +49,10 @@ setup(
             'amicleaner = amicleaner.cli:main',
         ],
     },
+    setup_requires=['pytest-runner'],
     tests_require=test_requirements,
     install_requires=install_requirements,
+    extras_require={
+        'test': test_requirements,
+    },
 )
